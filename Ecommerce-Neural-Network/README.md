@@ -38,5 +38,18 @@ To one hot encode, we iteratively find the index to place the "1" and add it to 
 for n in range(Rows):
     ind = int(Inputs[n, Cols-1])
     Inputs_new[n, ind+Cols-1] = 1
-```
+```  
 
+Finally, we have to create an indicator matrix for the targets. Because our targets are categorical, we need to one-hot encode them as well, this is called an indicator matrix. The method is similar to one-hot encoding the input data. We first create an empty indicator matrix, which is the number of samples by the number of categories. Then, iteratively place "1"s in their respective positions.  
+
+```
+def target_indicator(targets, K):
+    numClasses = len(targets)
+
+    #initialize a indicator matrix with zeroes
+    indicator_matrix = np.zeros((numClasses, K))
+    #fill in the indicator matrix, we place the ones in the column equal to the target label (targets[i])
+    for i in range(numClasses):
+        indicator_matrix[i, targets[i]] = 1
+    return indicator_matrix
+ ```
