@@ -16,6 +16,7 @@ The final category is the user action (Categorical) and will act as the targets 
 
 ### Processing the Data
 
-First, we have to split the data into the inputs and targets. The targets are the last column, while the rest are the inputs. `Inputs = data[:, :-1]
-    Targets = data[:, -1]`  
+First, we have to split the data into the inputs and targets. The targets are the last column, while the rest are the inputs.  
+`Inputs = data[:, :-1]
+ Targets = data[:, -1]`  
 Then, 
