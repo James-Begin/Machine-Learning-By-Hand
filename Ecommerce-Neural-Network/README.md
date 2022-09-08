@@ -33,7 +33,7 @@ In this case, there are 4 different categories, meaning we have to add 3 more co
 To one hot encode, we iteratively find the index to place the "1" and add it to the zero matrix we added to the input data. Recall the index where the "1" is placed is the same as the category number.  
 
 `for n in range(Rows):`  
-`    ind = int(Inputs[n, Cols-1])`  
-`    Inputs_new[n, ind+Cols-1] = 1`  
+     `ind = int(Inputs[n, Cols-1])`  
+     `Inputs_new[n, ind+Cols-1] = 1`  
 
 
