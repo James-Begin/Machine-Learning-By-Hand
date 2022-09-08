@@ -24,8 +24,7 @@ Then, we have to normalize the columns containing continuous data such as the vi
 `Inputs[:, 1] = (Inputs[:,1] - Inputs[:,1].mean()) / Inputs[:,1].std()`  
 `Inputs[:, 2] = (Inputs[:, 2] - Inputs[:, 2].mean()) / Inputs[:, 2].std()`  
   
-Next, we have to use one-hot encoding to format the categorical data (Time of day). There are four time categories, 0-6, 6-12, 12-18, and 18-0. One-hot encoding converts categorical data into a matrix where each column is a category and a "1" is placed in the column representing the category, leaving the rest "0"s.  
-For example, a category of 3 would be [0,0,1,0] when one-hot encoded.  
+Next, we have to use one-hot encoding to format the categorical data (Time of day). There are four time categories, 0-6, 6-12, 12-18, and 18-0. One-hot encoding converts categorical data into a matrix where each column is a category and a "1" is placed in the column representing the category, leaving the rest "0"s. For example, a category of 3 would be [0,0,1,0] when one-hot encoded.  
 In this case, there are 4 different categories, meaning we have to add 3 more columns to the input data array (we already have one with the original data).  
 `Inputs_new = np.zeros((Rows, Cols+3))`  
 `Inputs_new[:, 0:(Cols-1)] = Inputs[:, 0:(Cols-1)]`  
