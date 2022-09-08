@@ -40,7 +40,7 @@ for n in range(Rows):
     Inputs_new[n, ind+Cols-1] = 1
 ```  
 
-Finally, we have to create an indicator matrix for the targets. Because our targets are categorical, we need to one-hot encode them as well, this is called an indicator matrix. The method is similar to one-hot encoding the input data. We first create an empty indicator matrix, which is the number of samples by the number of categories. Then, iteratively place "1"s in their respective positions.  
+Then, we have to create an indicator matrix for the targets. Because our targets are categorical, we need to one-hot encode them as well, this is called an indicator matrix. The method is similar to one-hot encoding the input data. We first create an empty indicator matrix, which is the number of samples by the number of categories. Then, iteratively place "1"s in their respective positions.  
 
 ```
 def target_indicator(targets, K):
@@ -53,3 +53,21 @@ def target_indicator(targets, K):
         indicator_matrix[i, targets[i]] = 1
     return indicator_matrix
  ```
+Finally, we specify how much of the data we want to allocate for training and testing and then create the indicator matrix for testing and training based on that.
+This part is guesswork and can be changed depending on the situation. For now, half the data is used for training, while half is for testing.  
+
+```
+#Classes (K) is the number of distinct possible outcomes
+Classes = len(set(Targets))
+
+Train_Inputs = Inputs[:250]
+Train_Targets = Targets[:250]
+
+#we pass in the number of targets for training and # of classes to create the indicator matrix
+Train_Targets_ind_matrix = target_indicator(Train_Targets, Classes)
+
+#test our model on the remaining 250 samples and create another indicator matrix
+Test_Inputs = Inputs[250:]
+Test_Targets = Targets[250:]
+Test_Targets_ind_matrix = target_indicator(Test_Targets, Classes)
+```
