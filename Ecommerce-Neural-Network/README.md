@@ -30,9 +30,10 @@ In this case, there are 4 different categories, meaning we have to add 3 more co
 `Inputs_new = np.zeros((Rows, Cols+3))`  
 `Inputs_new[:, 0:(Cols-1)] = Inputs[:, 0:(Cols-1)]`  
 
-To one hot encode, we iteratively find the index to place the "1" and add it to the zero matrix we added to the input data. Recall the index where the "1" is placed is the same as the category number.
+To one hot encode, we iteratively find the index to place the "1" and add it to the zero matrix we added to the input data. Recall the index where the "1" is placed is the same as the category number.  
+
 `for n in range(Rows):`  
-`    t = int(Inputs[n, Cols-1])`  
-`    Inputs_new[n, t+Cols-1] = 1`  
+`    ind = int(Inputs[n, Cols-1])`  
+`    Inputs_new[n, ind+Cols-1] = 1`  
 
 
