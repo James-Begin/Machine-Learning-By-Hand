@@ -17,19 +17,22 @@ The final category is the user action (Categorical) and will act as the targets 
 ### Processing the Data
 
 First, we have to split the data into the inputs and targets. The targets are the last column, while the rest are the inputs.  
-`Inputs = data[:, :-1]`  
- `Targets = data[:, -1]`  
-  
+```
+Inputs = data[:, :-1]
+Targets = data[:, -1]
+```
 Then, we have to normalize the columns containing continuous data such as the visit duration and # of products viewed. In this case, we can normalize using the Z-score. The formula for which is (x - mean) / standard deviation.  
-`Inputs[:, 1] = (Inputs[:,1] - Inputs[:,1].mean()) / Inputs[:,1].std()`  
-`Inputs[:, 2] = (Inputs[:, 2] - Inputs[:, 2].mean()) / Inputs[:, 2].std()`  
-  
+```
+Inputs[:, 1] = (Inputs[:,1] - Inputs[:,1].mean()) / Inputs[:,1].std()
+Inputs[:, 2] = (Inputs[:, 2] - Inputs[:, 2].mean()) / Inputs[:, 2].std()
+```
 Next, we have to use one-hot encoding to format the categorical data (Time of day). There are four time categories, 0-6, 6-12, 12-18, and 18-0. One-hot encoding converts categorical data into a matrix where each column is a category and a "1" is placed in the column representing the category, leaving the rest "0"s. For example, a category of 3 would be [0,0,1,0] when one-hot encoded.  
 
 In this case, there are 4 different categories, meaning we have to add 3 more columns to the input data array (we already have one with the original data).  
-`Inputs_new = np.zeros((Rows, Cols+3))`  
-`Inputs_new[:, 0:(Cols-1)] = Inputs[:, 0:(Cols-1)]`  
-
+```
+Inputs_new = np.zeros((Rows, Cols+3))
+Inputs_new[:, 0:(Cols-1)] = Inputs[:, 0:(Cols-1)]
+```
 To one hot encode, we iteratively find the index to place the "1" and add it to the zero matrix we added to the input data. Recall the index where the "1" is placed is the same as the category number.  
 ```
 for n in range(Rows):
