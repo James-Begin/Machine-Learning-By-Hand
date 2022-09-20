@@ -71,3 +71,18 @@ Test_Inputs = Inputs[250:]
 Test_Targets = Targets[250:]
 Test_Targets_ind_matrix = target_indicator(Test_Targets, Classes)
 ```
+
+### Weights and Biases
+This neural network has only one hidden layer that contains 5 nodes. This is an arbitrary amount and can be increased or decreased depending on the use case.  
+Because of this, there are two sets of weights and biases to be accounted for. The first set works between the input and hidden layer and the second set between the hidden and output layer.  
+
+To initialize weights, we cant have them all be zero as training would become a very slow process. Instead, we can create a generate a normally distrubuted set of weights of size (Columns, Hidden Nodes) for the first set as this represents the number of input nodes and hidden nodes. For biases, we can initialize them as zeroes as the weights already fire the neurons in the beginning. Although, in certain cases, it may be necessary to set biases to a small amount such as 0.001.
+```
+Weights1 = np.random.randn(Cols, Hidden_nodes)
+Bias1 = np.zeros(Hidden_nodes)
+```
+In the second set of weights and biases, the weights are distrubuted normally in an array of size (Hidden_nodes, Classes) as this represents the connection between the hidden layer nodes and output nodes. Again, the biases are initialized as zero.
+```
+Weights2 = np.random.randn(Hidden_nodes, Classes)
+Bias2 = np.zeros(Classes)
+```
