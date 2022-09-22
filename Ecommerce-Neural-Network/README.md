@@ -86,3 +86,25 @@ In the second set of weights and biases, the weights are distrubuted normally in
 Weights2 = np.random.randn(Hidden_nodes, Classes)
 Bias2 = np.zeros(Classes)
 ```
+
+### Activation Function
+Activation functions are used to find the output of a node. Softmax is usually used for multi-classification problems. This is because softmax outputs a probability for each ouput node that sums to 1.
+```
+return np.exp(var) / np.sum(np.exp(var), axis = 1, keepdims = True)
+```
+
+### Feed Forward
+Simply, feed forward is the process of passing the data throught the neural network. Here we multiply the input by the weights, add the bias, and apply the softmax function. We do this for both the hidden layer and the output layer.
+```
+def feed_forward(Input, Weights1, Bias1, Weights2, Bias2):
+    Hidden_values = softmax(Input.dot(Weights1) + Bias1)
+    return softmax(Hidden_values.dot(Weights2) + Bias2), Hidden_values
+```
+
+### Prediction
+Here we just find the prediction of our output. The output produced by softmax is an array of probabilities. By using the argmax function, we can find the greatest probability and the prediction.
+```
+def Prediction(Probability_of_Targets):
+    return np.argmax(Probability_of_Targets, axis = 1)
+    ```
+    
