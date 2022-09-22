@@ -125,3 +125,17 @@ The loss function calculates how far from the correct result the model is. Becau
 def loss_function(Targets, Probability_of_Targets):
     return -np.mean(Targets * np.log(Probability_of_Targets))
 ```
+
+### Training
+To train the model we have to use backpropagation, where we alter weights and biases as we move bakcwards through the model. To control the speed of learning, we define the learning rate. The learning rate is arbitrary and should be tweaked.
+```
+learning_rate = 0.0001
+```
+Next, we create a loop for training. The number of loops is again arbitrary and should be tweaked. Then, we pass the inputs, weights, and biases through the feed forward function. We do this twice, for training and testing data.
+```
+for i in range(100000):
+    #here we train the inputs with the allocated samples, and then test using the rest of the samples, recall that there are two sets of weights and biases
+    A_train, B_train = feed_forward(Train_Inputs, Weights1, Bias1, Weights2, Bias2)
+
+    A_test, B_test = feed_forward(Test_Inputs, Weights1, Bias1, Weights2, Bias2)
+```
