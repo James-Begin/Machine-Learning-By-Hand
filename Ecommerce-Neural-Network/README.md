@@ -106,5 +106,15 @@ Here we just find the prediction of our output. The output produced by softmax i
 ```
 def Prediction(Probability_of_Targets):
     return np.argmax(Probability_of_Targets, axis = 1)
-    ```
-    
+```
+
+### Accuracy / Classification Rate
+To find how accurate the model is, count how many times our predictions matched the target predictions. Dividing the total count by the amount of targets, we can find the % accuracy.
+```
+def accuracy(Targets, Outputs):
+    count = 0
+    for i in range(len(Targets)):
+        if Targets[i] == Outputs[i]:
+            count += 1
+    return count / len(Targets)
+```
