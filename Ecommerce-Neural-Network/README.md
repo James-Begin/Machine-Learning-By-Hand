@@ -118,3 +118,10 @@ def accuracy(Targets, Outputs):
             count += 1
     return count / len(Targets)
 ```
+
+### Loss Function
+The loss function calculates how far from the correct result the model is. Because this is a multi-class model, the function used is cross-entropy loss. The formula for which can be found at https://towardsdatascience.com/cross-entropy-loss-function-f38c4ec8643e.
+```
+def loss_function(Targets, Probability_of_Targets):
+    return -np.mean(Targets * np.log(Probability_of_Targets))
+```
