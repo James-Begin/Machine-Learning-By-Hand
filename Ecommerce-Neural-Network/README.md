@@ -139,3 +139,13 @@ for i in range(100000):
 
     A_test, B_test = feed_forward(Test_Inputs, Weights1, Bias1, Weights2, Bias2)
 ```
+Now, we iteratively use gradient descent and our learning rate to find the minimum loss (best accuracy) of our network. The formula for gradient descent is simplified, but is derived through the use of derivatives in Deep Learning and Neural Networks in Python by the Lazy Programmer. To update our weights using this formula, we use backpropagation. Moving backwards through the network, meaning we update our second layer of weights and biases before the first. The adjustment for the first layer weights is based on the adjustment for the second layer and using the _hidden_ variable makes this easier.
+```
+Weights2 -= learning_rate * B_train.T.dot(A_train - Train_Targets_ind_matrix)
+    Bias2 -= learning_rate * (A_train - Train_Targets_ind_matrix).sum()
+
+    hidden = (A_train - Train_Targets_ind_matrix).dot(Weights2.T) * (1 - B_train * B_train)
+
+    Weights1 -= learning_rate * Train_Inputs.T.dot(hidden)
+    Bias1 -= learning_rate * hidden.sum(axis = 0)
+```
