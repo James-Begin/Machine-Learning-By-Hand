@@ -151,3 +151,4 @@ Bias1 -= learning_rate * hidden.sum(axis = 0)
 ```
 Here is an example of the formula for the gradient of our loss function in matrix form. In this case, _J_ is the loss function, _X_ is the output values, _T_ is the hidden values in between the layers as described in the _feed_forward_ function. Finally, _Y_ is the target data (values we want to hit).
 ![Screenshot 2022-10-24 222242](https://user-images.githubusercontent.com/103123677/197667226-32040ae2-3875-49b7-a950-cfefbeadf5cb.png)
+
