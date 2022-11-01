@@ -26,6 +26,7 @@ def cleandata():
     #for the time of day column, the data is split into 4 categories, one for 00-06, 06-12, 12-18, etc.
     #We cant feed categories to the model, so we need to one-hot encode (more below)
     Rows, Cols = Inputs.shape #get dimensions of input data
+    
     Inputs_new = np.zeros((Rows, Cols+3)) #To one hot encode, we need one column for each category, we have one already, add 3 more
     #copy the other data from old Inputs to new Inputs excluding the time of day.
     Inputs_new[:, 0:(Cols-1)] = Inputs[:, 0:(Cols-1)]
