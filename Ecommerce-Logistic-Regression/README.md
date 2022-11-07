@@ -88,7 +88,69 @@ Weights = np.random.randn(Cols, Classes)
 
 Biases = np.zeros(Classes)
 ```
+### Activation Function
+Activation functions are used to find the output from multple inputs. Softmax is usually used for multi-classification problems because it outputs a probability that sums to 1.
+```
+return np.exp(var) / np.sum(np.exp(var), axis = 1, keepdims = True)
+```
+### Feed Forward
+Simply, feed forward is the process of passing the data throught the neural network. Here we multiply the input by the weights, add the bias, and apply the softmax function. We do this for both the hidden layer and the output layer.
+```
+def feed_forward(Input, Weights, Biases):
+    return softmax(Input.dot(Weights) + Biases)
+```
+### Prediction
+Here we just find the prediction of our output. The output produced by softmax is an array of probabilities. By using the argmax function, we can find the greatest probability and the prediction.
+```
+def Prediction(Probability_of_Targets):
+    return np.argmax(Probability_of_Targets, axis = 1)
+```
+### Accuracy / Classification Rate
+To find how accurate the model is, count how many times our predictions matched the target predictions. Dividing the total count by the amount of targets, we can find the % accuracy.
+```
+def accuracy(Targets, Outputs):
+    count = 0
+    for i in range(len(Targets)):
+        if Targets[i] == Outputs[i]:
+            count += 1
+    return count / len(Targets)
+```
+### Loss Function
+The loss function calculates how far from the correct result the model is. Because this is a multi-class model, the function used is cross-entropy loss. The formula for which can be found at https://towardsdatascience.com/cross-entropy-loss-function-f38c4ec8643e.
+```
+def loss_function(Targets, Probability_of_Targets):
+    return -np.mean(Targets * np.log(Probability_of_Targets))
+```
+### Training
+To train the model we have to use backpropagation, where we alter weights and biases as we move bakcwards through the model. To control the speed of learning, we define the learning rate. The learning rate is arbitrary and should be tweaked.
+```
+learning_rate = 0.0001
+```
+Next, we create a loop for training. The number of loops is again arbitrary and should be tweaked. Then, we pass the inputs, weights, and biases through the feed forward function. Here, regression differs from a Neural Network. Because there is only one "layer" of nodes, we only need to adjust weights once. This uses the same formula for gradient descent shown in the Neural Network portion. In the first part of training, we feed forward the training and test data.
+```
+for i in range(100000):
+    #here we train the inputs with the allocated samples, and then test using the rest of the samples
+    train = feed_forward(Train_Inputs, Weights, Biases)
+    test = feed_forward(Test_Inputs, Weights, Biases)
 
+    #here, we using the indicator matrix (the targets we want to hit) from before and compare it to the data we just trained and tested.
+    train_loss = loss_function(Train_Targets_ind_matrix, train)
+    test_loss = loss_function(Test_Targets_ind_matrix, test)
+
+    #record our loss data
+    training_costs.append(train_loss)
+    test_costs.append(test_loss)
+```
+Using the formula for gradient descent we update the weights to try and try to minimze our loss. 
+```#update our weights using the learning rates
+    #The formula for gradient descent is used as an iterative method to find the minimum of the cost function.
+    #To find the minimum, we want to solve the derivative of the Loss function with respect to the weights when it equals 0
+    #In that case, we need to solve for the weights, but we want algebraically, so we use an iterative method like gradient descent instead.
+    #The formula for gradient descent is derived intuitively in lesson 33 of the Lazy Programmer's Deep learning and Neural Networks in Python
+    Weights -= learning_rate * (Train_Inputs.T.dot(train - Train_Targets_ind_matrix))
+
+    Biases -= learning_rate * (Train_Targets.T.dot(test - Test_Targets_ind_matrix))
+```
 
 
 
