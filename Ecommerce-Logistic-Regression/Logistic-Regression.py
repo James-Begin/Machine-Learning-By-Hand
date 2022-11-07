@@ -2,9 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from sklearn.utils import shuffle
-
-
 #data from https://raw.githubusercontent.com/lazyprogrammer/machine_learning_examples/master/ann_logistic_extra/ecommerce_data.csv
 #the data is a csv containing 6 columns and 500 rows of data. The each row is a seperate user and shows whether they shop online, visit duration, etc+.
 #the last column is the user_action, which is what we eventually want to predict
