@@ -9,3 +9,5 @@ This project is an attempt to utilize and apply concepts that I have learned. Th
 - [Deep Learning Prerequisites: Linear Regression in Python by The Lazy Programmer](https://www.udemy.com/course/data-science-linear-regression-in-python/)
 - [Data Science: Deep Learning and Neural Networks in Python by The Lazy Programmer](https://www.udemy.com/course/data-science-deep-learning-in-python/)
 - [Introduction to Deep Learning by MIT OpenCourseWare](https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/)
+
+###Comparing Logistic Regression and Neural Networks
