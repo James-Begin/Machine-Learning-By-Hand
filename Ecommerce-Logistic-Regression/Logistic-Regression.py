@@ -151,7 +151,7 @@ test_costs = []
 learning_rate = 0.0001
 
 #training loop, here we can set how many times we want to train, here we just call our functions
-for i in range(100000):
+for i in range(20000):
     #here we train the inputs with the allocated samples, and then test using the rest of the samples
     train = feed_forward(Train_Inputs, Weights, Biases)
     test = feed_forward(Test_Inputs, Weights, Biases)
@@ -181,6 +181,7 @@ for i in range(100000):
 print(f"Final Training Accuracy: {accuracy(Train_Targets, Prediction(train))}")
 print(f"Final Test Accuracy: {accuracy(Test_Targets, Prediction(test))}")
 #plot stats
+plt.title("Logistic Regression Accuracy")
 legend_train, = plt.plot(training_costs)
 legend_test, = plt.plot(test_costs)
 plt.legend(["Training Costs", "Test Costs"])
