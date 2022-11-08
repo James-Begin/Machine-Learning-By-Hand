@@ -160,7 +160,7 @@ test_costs = []
 learning_rate = 0.0001
 
 #training loop, here we can set how many times we want to train, here we just call our functions
-for i in range(100000):
+for i in range(20000):
     #here we train the inputs with the allocated samples, and then test using the rest of the samples, recall that there are two sets of weights and biases
     A_train, B_train = feed_forward(Train_Inputs, Weights1, Bias1, Weights2, Bias2)
 
@@ -200,6 +200,7 @@ for i in range(100000):
 print(f"Final Training Accuracy: {accuracy(Train_Targets, Prediction(A_train))}")
 print(f"Final Test Accuracy: {accuracy(Test_Targets, Prediction(A_test))}")
 # plot stats
+plt.title("Neural Network Accuracy")
 legend_train, = plt.plot(training_costs)
 legend_test, = plt.plot(test_costs)
 plt.legend(["Training Costs", "Test Costs"])
