@@ -44,22 +44,6 @@ def getbinarydata():
 
     return binaryInputs, binaryTargets
 
-
-#indicator matrix
-#if there are k classes, there will be k class indicators y1, y2, y3, ... yk
-#for example, we give labels like "Corn", "Apple", "Banana" numerical values 0, 1, 2.
-#this is because we need to index arrays of data, and we cant use strings for that.
-#Additionally, scikit-learn used to require you to convert labels to values 0 -> k-1. This is no longer required, but a good exercise.
-#After converting labels to integers, this array is one-hot encoded:
-#for example, there are 5 categories (classes) and 6 samples,
-#After converting labels to numbers: [2 4 3 1 2 0]
-#By one hot encoding, we create a matrix with 6 (samples) rows, and 5 (classes) columns
-#[0 0 1 0 0    Here, the prior array with numerical labels shows where to place the 1 in each row
-# 0 0 0 0 1    This is what we want the indicator matrix to look like.
-# 0 0 0 1 0    The reason for this is these are targets, what we want to correctly guess.
-# 0 1 0 0 0    These are like the answers for the problem, each row has only one 1 because that is a probability
-# 0 0 1 0 0    in the first row (0), it is 100% in category 2 and 0% in any other because this is already known
-# 1 0 0 0 0]
 def target_indicator(targets, K):
     numClasses = len(targets)
 
